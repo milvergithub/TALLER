@@ -359,6 +359,18 @@ class  ConexionTIS
         }
         return $resp;
     }
+    /*********************************  INICIO GESTION DOCUMENTOS  *********************************/
+    function dameDocumentosSubidosPorLaConvocatoria($codConv) {
+       $sqlDDSC="SELECT * FROM dame_documento_por_conv(".$codConv.")";
+       $resDDSC=  $this->Consultas($sqlDDSC);
+       return $resDDSC;
+    }
+    function  subirDocumentos($codConv, $nombDoc, $codTip, $notaDoc, $rutaDoc)
+    {
+        
+        $this->Insertar("SELECT * FROM insetardocumentosconv(".$codConv.", '".$nombDoc."', ".$codTip.", ".$notaDoc.", '".$rutaDoc."');");
+    }
+    /*********************************  FINAL  GESTION DOCUMENTOS  *********************************/
     /**/
 }
 //fin clase conexion

@@ -125,7 +125,7 @@ else{
               <span class="sr-only success">0% completado</span>
             </div>
          </div>
-        <form action="php/validarNombreGE.php" method="POST" id="formularioRegistroGE">
+        <form action="php/validarNombreGE.php" method="POST" id="formularioRegistroGE" enctype="multipart/form-data">
            <div class="form-horizontal">
              <div class="form-group">
                 <label for="nombreGE" class="col-lg-3 control-label " >Nombre para la Grupo Empresa</label>

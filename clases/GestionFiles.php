@@ -28,4 +28,7 @@ class GestionFiles {
       $destino="img/logos/".$archivoLog;
       copy($origen, $destino);
    }
+   function guardarDocumento($origenDoc,$rutaDestDoc) {
+      copy($origenDoc, $rutaDestDoc);
+   }
 }
