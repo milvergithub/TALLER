@@ -9,6 +9,12 @@ class GestionDocumentos {
    public function __construct() {
       $this->conexion=new ConexionTIS();
    }
+   function dameDocumentosTipoPresentacion() {
+      $resultado=  $this->conexion->dameDocumetosPresentacion();
+      while ($regDDTP = pg_fetch_assoc($resultado)) {
+         echo '<option value="'.$regDDTP['codigo'].'">'.$regDDTP['nombre'].'</option>';
+      }
+   }
    function dameTodoDocumentosConvActual($codConv) {
       $resultadoDTDCA=  $this->conexion->dameDocumentosSubidosPorLaConvocatoria($codConv);
       while ($regDTDCA = pg_fetch_assoc($resultadoDTDCA)) {

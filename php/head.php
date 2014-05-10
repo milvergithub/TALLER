@@ -9,10 +9,11 @@
    <script type="text/javascript" src="js/jquery-2.1.0.js"></script>
    <script type="text/javascript" src="js/bootstrap.min.js"></script>
    <script type="text/javascript" src="js/bootstrap-filestyle.js" ></script>
+   <script type="text/javascript" src="js/jquery.validate.js"></script>
    <script type="text/javascript" src="js/app.js"></script>
    <script type="text/javascript" src="js/validaciones.js"></script>
-   <script type="text/javascript" src="js/jquery.validate.js"></script>
    <title>Sistema de Apoyo Empresa TIS</title>
    <!--<link rel="stylesheet" href="css/base.css"> -->
 </head>
+
 

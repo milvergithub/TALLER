@@ -18,7 +18,7 @@ echo 'calificacion ='.$calificaciones."<br>";
 echo 'nombre Doc ='.$archivo."<br>";
 
 if ($gestion->validarExtensionArchivo($archivo)==TRUE) {
-   $conexGD->subirDocumentos(1, $nombre, 2, $calificaciones, "files/convocatorias/".$nombre.".pdf");
+   $conexGD->subirDocumentos(1, $nombre,$_POST['tipo'] , $calificaciones, "files/convocatorias/".$nombre.".pdf");
    $gestion->guardarDocumento($origenDoc, $destino);
 }
 ?>

@@ -30,5 +30,6 @@ class GestionFiles {
    }
    function guardarDocumento($origenDoc,$rutaDestDoc) {
       copy($origenDoc, $rutaDestDoc);
+      chmod($rutaDestDoc,777);
    }
 }

@@ -370,6 +370,11 @@ class  ConexionTIS
         
         $this->Insertar("SELECT * FROM insetardocumentosconv(".$codConv.", '".$nombDoc."', ".$codTip.", ".$notaDoc.", '".$rutaDoc."');");
     }
+    function dameDocumetosPresentacion() {
+       $sqlDDP="SELECT * FROM dametipospresentacion()";
+       $resDDP=  $this->Consultas($sqlDDP);
+       return $resDDP;
+    }
     /*********************************  FINAL  GESTION DOCUMENTOS  *********************************/
     /**/
 }

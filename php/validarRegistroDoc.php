@@ -11,38 +11,45 @@ include '../clases/RegistroTIS.php';
    $telefono=$_POST['telefono'];
    
    if((trim($usuariod)==NULL)|(trim($nombresDoc)==NULL)|(trim($apellidosDoc)==NULL)|(trim($grupo)==NULL)|(trim($pass)==NULL)) {
-		echo "Hay Campos Vacios";
-		echo '<script type="text/javascript">
+        echo "<div class='alert alert-danger col-lg-8'>
+                  Los campos marcados con (*) son requeridos debe llenarlos!!!
+              </div>";
+		/*echo '<script type="text/javascript">
                window.location="../registroDoc.php?'.md5("registrocamposvaciosDoc").'";
-              </script>';
+              </script>';*/
    }
    if ($registroDoc->usuarioUnico($usuariod)=='t') {
       if ($registroDoc->emailUnico($emailDoc)=='t') {
          if ($registroDoc->verificarGrupo($grupo)=='t') {
-            echo "usuario = ".$usuariod."<br>";
-            echo "nombres = ".$nombresDoc." ".$apellidosDoc."<br>";
-            echo "password = ".$pass."<br>";
-            echo "email = ".$emailDoc."<br>";
-            echo "telefono = ".$telefono."<br>";
-            echo "grupo = ".$grupo."<br>";
+            
             $connec=new ConexionTIS();
             $connec->registrarUsuarioDoc($grupo, $usuariod, $pass, $nombresDoc." ".$apellidosDoc,$telefono,$emailDoc);
+            echo "Se registro en la base de datos";
          }
          else{
-            echo '<script type="text/javascript">
-                  window.location="../registroDoc.php?'.md5("grupoExisteDoc").'";
-                </script>';
+            echo "<div class='alert alert-danger col-lg-8'>
+                        El numero de grupo ya existe ingrese un numero de grupo diferente !!!
+                  </div>";
+            /*echo '<script type="text/javascript">
+                  window.location="registroDoc.php?'.md5("grupoExisteDoc").'";
+                </script>';*/
          }
       }
       else{
-         echo '<script type="text/javascript">
-                  window.location="../registroDoc.php?'.md5("emailExisteDoc").'";
-                </script>';
+         echo "<div class='alert alert-danger col-lg-8'>
+                  la direccion de correo electronico ya esta siendo usada por otro usuario ingrese uno nuevo !!!
+               </div>";
+         /*echo '<script type="text/javascript">
+                  window.location="registroDoc.php?'.md5("emailExisteDoc").'";
+                </script>';*/
       }
    }
    else{
-       echo '<script type="text/javascript">
-               window.location="../registroDoc.php?'.md5("registroUsuarioExisteDoc").'";
-             </script>';
+      echo "<div class='alert alert-danger col-lg-8'>
+               El nombre de usuario ya esta siendo usado por otro usuario ingrese uno diferente !!!
+            </div>";
+      /*echo '<script type="text/javascript">
+               window.location="registroDoc.php?'.md5("registroUsuarioExisteDoc").'";
+             </script>';*/
    }
 ?>

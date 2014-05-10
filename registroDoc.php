@@ -27,43 +27,42 @@ include 'php/head.php';
       }
       if (isset($_REQUEST[md5("grupoExisteDoc")])) {
          ?>
-         <div class='alert alert-danger col-lg-8'>
-            grupo ya Existe !!!
-         </div>
+          
          <?php
       }
       ?>
    <div class="container container-fluid center-block">
       <h2>Registro de Usuario-Docente</h2>
       <h4>(*) Requerimientos importantes</h4>
+      <div id="ok" class=""></div>
       <form class="form-group col-lg-8 panel panel-body" action="php/validarRegistroDoc.php" method="post" id="formularioRegistroDoc">
          <div class="control-group">
             <span class="glyphicon glyphicon-user">Usuario:</span>  
-            <input class="form-control input-sm" type="text" name="nombreuser" />  		
+            <input class="form-control input-sm" type="text" name="nombreuser" id="nombreuser"/>  		
          </div>
          <div class="control-group">
             <span class="glyphicon"> Nombres:</span>
-            <input class="form-control input-sm" type="text" name="nombres" />
+            <input class="form-control input-sm" type="text" name="nombres" id="nombres"/>
          </div>
          <div class="control-group">
             <span class="glyphicon"> Apellidos:</span>
-            <input class="form-control input-sm" type="text" name="apellidos" />
+            <input class="form-control input-sm" type="text" name="apellidos" id="apellidos"/>
          </div>
          <div class="control-group">
             <span class="glyphicon" > NroGrupo</span>
-            <input class="form-control input-sm" type="text" name="nrogrupo"/>
+            <input class="form-control input-sm" type="text" name="nrogrupo" id="nrogrupo"/>
          </div>
          <div class="control-group">
             <span class="glyphicon glyphicon-lock">Password:</span>
-            <input class="form-control input-sm" type="password" name="password" />
+            <input class="form-control input-sm" type="password" name="password" id="password"/>
          </div>
          <div class="control-group">
             <span class="glyphicon">Email:</span> 
-            <input class="form-control input-sm" type="text" name="emailDoc" />
+            <input class="form-control input-sm" type="text" name="emailDoc" id="emailDoc"/>
          </div>
          <div class="control-group">
             <span class="glyphicon glyphicon-phone">Telefono:</span> 
-            <input class="form-control input-sm" type="text" name="telefono" /><br/><br/>
+            <input class="form-control input-sm" type="text" name="telefono" id="telefono"/><br/><br/>
          </div>
          <input class="btn btn-primary" type="submit" value="Registrar" />
        </form>

@@ -7,8 +7,6 @@ function inicio(){
    buscador();
 }
 function init(){
-   $('input[type=file]').bootstrapFileInput();
-   $('file-inputs').bootstrapFileInput();
    $("#logoin").change(function(){
       readURL(this);
    });
@@ -177,6 +175,7 @@ function anadirDocumetosPresentacion(){
                               <input class='btn btn-primary btn-sm' type='file' name='archivoA[]'/></td>\n\
                            </tr>";
 }
+
 
 
 
