@@ -1,4 +1,10 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Documento sin título</title>
+</head>
+
 <body>
 	<?php
         include 'clases/ConexionTIS.php';
@@ -8,17 +14,10 @@
 	$fecha=$_POST['fecha'];
 	echo 'el nombre de la convocatoria es :'.$nombre."<br>";
 	echo 'la fecha de cracion es:'.$fecha."<br>";
-        //echo 'la fecha es: '.getdate().'<br>';
-        //$hoy = getdate();
-        //print_r($hoy);
-        //$hoy = date("j - n - Y");
-        //$hoy = date("Y-n-j");
-        //echo ''.$hoy.'<br>';
         $fechaActual= $conex->getFechaActual();
         //echo 'la fecha actual es:'.$fechaActual[0].'<br>';
         $fechaInsert = date("Y-m-d", strtotime($fecha));
         $nvoNomb = trim($nombre);
-        echo 'fecha='.$fechaInsert;
         if ($nvoNomb == '') {
             echo 'el nombre la convocatoria no puede ser nulo <br>';
         }

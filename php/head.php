@@ -1,5 +1,3 @@
-<?php
-?>
 <head>
    <meta charset="utf-8">
    <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,8 +10,13 @@
    <script type="text/javascript" src="js/jquery.validate.js"></script>
    <script type="text/javascript" src="js/app.js"></script>
    <script type="text/javascript" src="js/validaciones.js"></script>
+       
+   <link rel="stylesheet" href="css/redmond/jquery-ui-1.10.4.custom.css"/>
+   <link rel="stylesheet" href="css/calendario.css"/>
+   <script src="js/jquery.ui.core.js"></script>
+   <script src="js/jquery.ui.widget.js"></script>
+   <script src="js/jquery.ui.datepicker.js"></script>
+   <script src="js/validarCalendario.js"></script>   
    <title>Sistema de Apoyo Empresa TIS</title>
-   <!--<link rel="stylesheet" href="css/base.css"> -->
 </head>
-
 

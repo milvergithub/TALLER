@@ -18,6 +18,7 @@
         if ($_SESSION['coduser']!=NULL) {
            echo '<li><a href="php/controlEstado.php" class="btn">registro</a></li>';
            echo '<li><a href="seguimiento.php" class="btn">seguimiento</a></li>';
+           echo '<li><a href="index.php?'.md5("evaluarEmpresaArchivos").'" class="btn">Evaluar Archivos</a></li>';
         }
         ?>
      </ul>

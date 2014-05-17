@@ -249,6 +249,11 @@ class  ConexionTIS
         
         return $resp;
     }
+    function dameIntegrantesEmpresa($codEmp) {
+       $sqlDIE="SELECT * FROM dame_integrantes_empresa(".$codEmp.")";
+       $resultadoDIE=  $this->Consultas($sqlDIE);
+       return $resultadoDIE;
+    }
 
     function getNroIntegrante($codemp)
     {
@@ -313,7 +318,57 @@ class  ConexionTIS
         return $resp;
     }
    /*==============================================================================================*/
-      // funcion para insetar documentos de la empresa en la base de datos -----------------------------------------------------------------------
+    /*================================    GESTION ARCHIVOS    ==================================**/
+    
+    /*********************************  INICIO GESTION DOCUMENTOS  *********************************/
+    function dameDocumentosSubidosPorLaConvocatoria($codConv) {
+       $sqlDDSC="SELECT * FROM dame_documento_por_conv(".$codConv.")";
+       $resDDSC=  $this->Consultas($sqlDDSC);
+       return $resDDSC;
+    }
+    function  subirDocumentos($codConv, $nombDoc, $codTip, $notaDoc, $rutaDoc)
+    {
+        
+        $this->Insertar("SELECT * FROM insetardocumentosconv(".$codConv.", '".$nombDoc."', ".$codTip.", ".$notaDoc.", '".$rutaDoc."');");
+    }
+    function dameDocumetosPresentacion() {
+       $sqlDDP="SELECT * FROM dametipospresentacion()";
+       $resDDP=  $this->Consultas($sqlDDP);
+       return $resDDP;
+    }
+    function verificarDocumentoUnico($codConv,$nombre) {
+       $sqlVDU="SELECT * FROM verificarnombreunicoconvocatoria(".$codConv.",'".$nombre."') AS existe";
+       $resVDU=  $this->Consultas($sqlVDU);
+       return $resVDU;
+    }
+    function obtenerNotaTotalConv($codConv) {
+       $sqlONTC="SELECT * FROM verificarNotaDocumento(".$codConv.") AS notatotal";
+       $resONTC=  $this->Consultas($sqlONTC);
+       return $resONTC;
+    }
+    /*********************************  FINAL  GESTION DOCUMENTOS  *********************************/
+    /**/
+    /*********************************  EVALUACION DE ARCHIVOS GE  ********************************/
+    
+    function obtenerEmpresasParaEvaluarArchivos($codGrupo) {
+       $sqlOEPEA="SELECT * FROM getgrupoempresas(".$codGrupo.")";
+       $resOEPEA=  $this->Consultas($sqlOEPEA);
+       return $resOEPEA;
+    }
+    function obtenerCodigosApartirDeCodEmp($codEmp) {
+       $sqlOCADCE="SELECT codconv FROM dame_cods_contrato_empresa(".$codEmp.")";
+       $resOCADCE=  $this->Consultas($sqlOCADCE);
+       return $resOCADCE;
+    }
+    function obtenerArchivosEntregados($codEmp) {
+       $sqlOAE="SELECT * FROM devolverarchivosempresa(".$codEmp.")";
+       $resultadoOAE=  $this->Consultas($sqlOAE);
+       return $resultadoOAE;
+    }
+    /*********************************  EVALUACION DE ARCHIVOS GE  ********************************/
+    
+    /*********************************  SUBIDA DE ARCHIVOS Y CONFIGURAION *************************/
+    // funcion para insetar documentos de la empresa en la base de datos -----------------------------------------------------------------------
     function  insetarDocumentos($codrep, $nombDocument, $rutaDocunent, $partedocument)
     {
         $this->Insertar("SELECT * FROM insertardocumentos(".$codrep.", '".$nombDocument."','".$rutaDocunent."','".$partedocument."');"); 
@@ -342,11 +397,13 @@ class  ConexionTIS
     {
         $this->Insertar("SELECT * FROM insertandoanexopliego(".$codConv.", '".$rutaPlieg."');");
     }
-    /*================================    GESTION ARCHIVOS    ==================================**/
+    
+    // funcion para la creacion  de la prepropuesta
     function  insertarConvocatoria($nombConv, $fechaPrepConv)
     {
         $this->Insertar("SELECT * FROM anadirConvocatoria('".$nombConv."', '".$fechaPrepConv."');");
     }
+    
     function  getFechaActual()
     {
         $resp;
@@ -359,24 +416,41 @@ class  ConexionTIS
         }
         return $resp;
     }
-    /*********************************  INICIO GESTION DOCUMENTOS  *********************************/
-    function dameDocumentosSubidosPorLaConvocatoria($codConv) {
-       $sqlDDSC="SELECT * FROM dame_documento_por_conv(".$codConv.")";
-       $resDDSC=  $this->Consultas($sqlDDSC);
-       return $resDDSC;
-    }
-    function  subirDocumentos($codConv, $nombDoc, $codTip, $notaDoc, $rutaDoc)
+    function  dameDocumentosLectura($codConv)
     {
-        
-        $this->Insertar("SELECT * FROM insetardocumentosconv(".$codConv.", '".$nombDoc."', ".$codTip.", ".$notaDoc.", '".$rutaDoc."');");
+        $sqlDDL="SELECT * FROM devolvemedocdectura(".$codConv.");";
+        $resDDL=  $this->Consultas($sqlDDL);
+        return $resDDL;
     }
-    function dameDocumetosPresentacion() {
-       $sqlDDP="SELECT * FROM dametipospresentacion()";
-       $resDDP=  $this->Consultas($sqlDDP);
-       return $resDDP;
+    
+    // funcion para devolver los documentos para la subida de la comvocatoria
+    function darDocumnetoSubir($codConv) {
+        $sqlDDS="SELECT * FROM damedocumentos(".$codConv.");";
+        $resDDS= $this->Consultas($sqlDDS);
+        return $resDDS;
     }
-    /*********************************  FINAL  GESTION DOCUMENTOS  *********************************/
-    /**/
+    
+    function insertarArchivosEmp($codEmp, $codGest, $codConv, $codDoc, $nombre, $ruta, $parte) {
+        $sqlIAE= "SELECT * FROM insertararchivoemp(".$codEmp.", ".$codGest.", ".$codConv.", ".$codDoc.", '".$nombre."', '".$ruta."', '".$parte."');";
+        $this->Insertar($sqlIAE);
+    }
+    // para configurar notas de los documentos
+    function configuracionNotasDocumento($codUs, $codDoc, $nota) {
+        $sqlCND= "SELECT * FROM configurarnotadocumeentos(".$codUs.", ".$codDoc.", ".$nota.");";
+        $resCND= $this->Consultas($sqlCND);
+        return $resCND;
+    }
+    //funcion para devolver archivos de la empresa
+    function devolverArchivosEmpresa($codEmp) {
+        $sqlDAE= "SELECT * FROM devolverarchivosempresa(".$codEmp.");";
+        $resultDAE= $this->Consultas($sqlDAE);
+        return $resultDAE;
+    }
+    //funcion para la evaluacion grupal de archivos
+    function insertarEvaluacionGrupal($codEmp, $codArch, $nota) {
+        $sqlIEG = "SELECT * FROM insertarevaluaciongrupal(".$codEmp.", ".$codArch.", ".$nota.");";
+        $this->Insertar($sqlIEG);
+    }
 }
 //fin clase conexion
 ?>

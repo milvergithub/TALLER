@@ -15,7 +15,7 @@ class GestionFiles {
    }
    function validarExtensionArchivo($archivo) {
       $extencion=  strtolower(array_pop(explode(".", $archivo)));
-      if (($extencion=="pdf")||($extencion=="zip")) {
+      if (($extencion=="pdf")) {
          $res=TRUE;
       }
       else {
@@ -29,7 +29,9 @@ class GestionFiles {
       copy($origen, $destino);
    }
    function guardarDocumento($origenDoc,$rutaDestDoc) {
-      copy($origenDoc, $rutaDestDoc);
-      chmod($rutaDestDoc,777);
+      if ($origenDoc !=NULL) {
+         copy($origenDoc, $rutaDestDoc);
+         //chmod($rutaDestDoc,777);
+      }   
    }
 }

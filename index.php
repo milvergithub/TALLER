@@ -34,6 +34,9 @@ if(isset($_REQUEST[md5("registro")])||isset($_REQUEST[md5("registrocamposvacios"
             if (isset($_REQUEST[md5("consultaNombreEmpresas")])) {
                include 'php/consultaGE.php';
             }
+            if (isset($_REQUEST[md5("evaluarEmpresaArchivos")])) {
+               include 'EmpresasAEvaluar.php';
+            }
             ?>
          <?php
             include 'php/loginModal.php';

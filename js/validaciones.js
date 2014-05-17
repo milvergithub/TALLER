@@ -35,8 +35,18 @@ $(function(){
             required: "<p style='color: rgba(170, 0, 0, 0.76)'>Selecione un tipo</p>"
          }
       },
-      submitHandler:{
-         
+      submitHandler:function(form){
+    var dataString = 'nombre='+$('#nombre').val()+'&tipo='+$('#tipo').val()+'&calificacion='+$('#calificacion').val()+'&documento='+$('#documento').val();    
+            $.ajax({
+                type: "POST",
+                url:"php/validarDocumentosEntrega.php",
+                data: dataString,
+                success: function(data){
+                    $("#mensajeDocumentos").html(data);
+                    $("#mensajeDocumentos").show();
+                    //$("#formid").hide();
+                }
+            });
       },
       highlight: function(element) {
          $(element).closest('.control-group').removeClass('has-success').addClass('control-group has-error');

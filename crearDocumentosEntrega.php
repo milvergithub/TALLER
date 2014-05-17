@@ -2,10 +2,11 @@
    include 'php/head.php';
 ?>
 <div class="container container-fluid">
+   <h3>CREAR DOCUMENTOS DE ENTREGA</h3>
    <div id="mensaje">
       
    </div>
-   <form id="formularioCrearDocEntrega" class="form-group panel-info" method="post" enctype="multipart/form-data" action="php/validarDocumentosEntrega.php">
+   <form id="formularioCrearDocEntrega" class="form-group panel-info" method="post" enctype="multipart/form-data">
       <table class="table table-hover" id="tablaDocumentosPresentacion">
          <tr><td>nombre</td><td>tipo</td><td>calificacion</td><td>archivo<span class="glyphicon glyphicon-open"></span></td><td><span class="glyphicon glyphicon-export"></span></td></tr>         
          <?php include './php/documentosEntrega.php'; ?>
@@ -30,7 +31,7 @@
             </td>
             <td>
                <div class="control-group">
-                  <input type="file" name="archivo" class="btn btn-primary btn-sm" title="subir archivo" id="archivo"/>
+                  <input type="file" name="documento" class="btn btn-primary btn-sm" title="subir archivo" id="documento"/>
                </div>
             </td>
             <td>
@@ -41,4 +42,7 @@
 
       </table>
    </form>
+   <div id="mensajeDocumentos">
+      
+   </div>
 </div>
